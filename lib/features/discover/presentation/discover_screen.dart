@@ -18,6 +18,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      statusBarColor: AppColors.white,
       body: SizedBox(
         height: context.height,
         width: context.width,
@@ -26,13 +27,14 @@ class DiscoverScreen extends GetView<DiscoverController> {
             builder: (_) {
               return Column(
                 children: [
-                  30.verticalH,
+                  50.verticalH,
                   _buildAppbar(context).horizontalPadding(30.w),
                   24.verticalH,
                   _listBrands(context),
                   30.verticalH,
                   Expanded(
                     child: ListView(
+                      padding: EdgeInsets.zero,
                       children: [
                         _placeProducts(context),
                       ],

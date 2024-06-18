@@ -29,7 +29,7 @@ class ReviewsScreen extends GetView<ReviewsController> {
             builder: (_) {
               return Column(
                 children: [
-                  15.verticalH,
+                  70.verticalH,
                   const CustomAppbar(
                     actions: [CartIcon()],
                     title: "Review (1045)",

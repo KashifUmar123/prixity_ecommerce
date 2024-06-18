@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +35,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                15.verticalH,
+                70.verticalH,
                 const CustomAppbar(
                   actions: [CartIcon()],
                 ).horizontalPadding(30.w),
@@ -92,7 +94,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                   ),
                 ),
                 Container(
-                  height: 90.h - context.bottomBarHeight,
+                  height: Platform.isIOS ? 110.h : 90.h,
                   width: double.infinity,
                   padding: EdgeInsetsDirectional.only(
                     start: 30.w,

@@ -17,6 +17,7 @@ class CustomScaffold extends StatelessWidget {
     this.statusBarColor,
     this.systemNavigationBarColor,
     this.isStatusBarBrightnessDark = true,
+    this.topSafearea = false,
   });
 
   final PreferredSizeWidget? appBar;
@@ -31,6 +32,7 @@ class CustomScaffold extends StatelessWidget {
   final Color? statusBarColor;
   final Color? systemNavigationBarColor;
   final bool isStatusBarBrightnessDark;
+  final bool topSafearea;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class CustomScaffold extends StatelessWidget {
             systemNavigationBarColor ?? AppColors.white.withOpacity(.96),
       ),
       child: SafeArea(
+        top: topSafearea,
         bottom: false,
         child: Scaffold(
           key: key,
