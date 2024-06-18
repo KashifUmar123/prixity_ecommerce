@@ -1,0 +1,39 @@
+flavors:
+  prod:
+    app:
+      name: "Prixity Soft Ecommerce"
+
+    android:
+      applicationId: "com.prixity.ecommerce.app"  
+      firebase:
+          config: "config/android/prod/google-services.json"
+    ios:
+      bundleId: "com.prixity.ecommerce.app"
+      firebase:
+          config: "config/ios/prod/GoogleService-Info.plist"
+
+  stg:
+    app:
+      name: "Ecommerce Dev"
+  
+    android:
+      applicationId: "com.prixity.ecommerce.app"
+      firebase:
+          config: "config/android/stg/google-services.json"
+    ios:
+      bundleId: "com.prixity.ecommerce.app"
+      firebase:
+          config: "config/ios/stg/GoogleService-Info.plist"
+
+  dev:
+    app:
+      name: "Ecommerce Dev"
+  
+    android:
+      applicationId: "com.prixity.ecommerce.app"
+      firebase:
+          config: "config/android/dev/google-services.json"
+    ios:
+      bundleId: "com.prixity.ecommerce.app"
+      firebase:
+          config: "config/ios/dev/GoogleService-Info.plist"
