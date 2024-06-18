@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
+import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
+import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 
 class CartIcon extends StatelessWidget {
@@ -12,7 +15,7 @@ class CartIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap ??
           () {
-            // TODO: navigate to cart page
+            Get.find<INavigator>().pushNamed(RoutePaths.cart);
           },
       child: CustomImage(
         imagePath: KImages.cart,

@@ -8,7 +8,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 12.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -16,7 +16,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 30.sp,
           fontWeight: FontWeight.w700,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -24,7 +24,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w700,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -32,14 +32,14 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 11.sp,
           fontWeight: FontWeight.w700,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
   TextStyle get lable11400 => GoogleFonts.urbanist(
         textStyle: TextStyle(
           fontSize: 11.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -47,7 +47,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w700,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -55,7 +55,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 16.sp,
           fontWeight: FontWeight.w600,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 
@@ -63,7 +63,7 @@ extension TextstyleExtension on BuildContext {
         textStyle: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.black,
+          color: AppColors.lightBlack,
         ),
       );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
+import 'package:prixity_ecommerce_app/features/cart/cart_screen.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_bindings.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_screen.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/product_detail_bindings.dart';
@@ -31,6 +32,10 @@ class AppRoutes {
       name: RoutePaths.reviews,
       page: () => const ReviewsScreen(),
       binding: ReviewsBindings(),
+    ),
+    GetPage(
+      name: RoutePaths.cart,
+      page: () => const CartScreen(),
     ),
   ];
 

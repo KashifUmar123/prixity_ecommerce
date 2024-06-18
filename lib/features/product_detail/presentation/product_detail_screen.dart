@@ -37,7 +37,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
               children: [
                 70.verticalH,
                 const CustomAppbar(
-                  actions: [CartIcon()],
+                  actions: [
+                    CartIcon(),
+                  ],
                 ).horizontalPadding(30.w),
                 25.verticalH,
                 Expanded(
@@ -130,6 +132,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                         backgroundColor: AppColors.black,
                         titleColor: AppColors.white,
                         width: 156.w,
+                        onTap: () => controller.onAddToCart(controller.product),
                       )
                     ],
                   ),

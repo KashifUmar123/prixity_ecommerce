@@ -185,10 +185,13 @@ class DiscoverScreen extends GetView<DiscoverController> {
           "Discover",
           style: context.lable30700,
         ),
-        CustomImage(
-          imagePath: KImages.cart,
-          height: 24.w,
-          width: 24.w,
+        GestureDetector(
+          onTap: controller.onCartTap,
+          child: CustomImage(
+            imagePath: KImages.cart,
+            height: 24.w,
+            width: 24.w,
+          ),
         ),
       ],
     );

@@ -31,4 +31,8 @@ class DiscoverController extends BaseController {
   void onProductTap(Product product) {
     navigator.pushNamed(RoutePaths.productDetail, arguments: product);
   }
+
+  void onCartTap() {
+    navigator.pushNamed(RoutePaths.cart);
+  }
 }
