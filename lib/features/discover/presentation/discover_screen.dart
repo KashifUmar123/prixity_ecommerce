@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
+import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -185,14 +186,20 @@ class DiscoverScreen extends GetView<DiscoverController> {
           "Discover",
           style: context.lable30700,
         ),
-        GestureDetector(
-          onTap: controller.onCartTap,
-          child: CustomImage(
-            imagePath: KImages.cart,
-            height: 24.w,
-            width: 24.w,
-          ),
-        ),
+        GetBuilder(
+            init: Get.find<CartController>(),
+            builder: (cartController) {
+              return GestureDetector(
+                onTap: controller.onCartTap,
+                child: CustomImage(
+                  imagePath: cartController.products.isEmpty
+                      ? KImages.emptyCart
+                      : KImages.cart,
+                  height: 24.w,
+                  width: 24.w,
+                ),
+              );
+            }),
       ],
     );
   }

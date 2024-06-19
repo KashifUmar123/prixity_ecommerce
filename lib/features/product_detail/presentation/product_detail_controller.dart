@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
 import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
-import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
 import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/utils/utils.dart';
@@ -63,5 +62,12 @@ class ProductDetailController extends BaseController {
         cartController: cartController,
       ),
     );
+  }
+
+  bool productAlreadyAddedInCart() {
+    int length = cartController.products
+        .where((element) => element.product == product)
+        .length;
+    return length > 0 ? true : false;
   }
 }

@@ -12,4 +12,6 @@ class AppColors {
   static const Color graySecondary = Color(0XFFE7E7E7);
   static const Color grayTertiary = Color(0XFFF3F3F3);
   static const Color newGrayColor = Color(0XFFD7D7D7);
+  static const Color redSecondaryColor = Color(0XFFFF4C5E);
+  static const Color grayInCartAddedBottomsheet = Color(0XFF6F6F6F);
 }

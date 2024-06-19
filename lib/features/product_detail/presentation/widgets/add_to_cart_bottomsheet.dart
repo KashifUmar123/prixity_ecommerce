@@ -100,7 +100,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                 ),
                 5.verticalH,
                 Text(
-                  "\$2500",
+                  "\$$totalPrice",
                   style: context.lable20700,
                 )
               ],
@@ -110,12 +110,22 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
               backgroundColor: AppColors.black,
               titleColor: AppColors.white,
               width: 156.w,
+              onTap: () {
+                widget.cartController.addProduct(
+                  CartProduct(
+                    params: widget.params,
+                    product: widget.product,
+                  ),
+                );
+              },
             )
           ],
         ),
       ],
     );
   }
+
+  num get totalPrice => widget.params.quantity * widget.product.price;
 
   _buildButton(
     BuildContext context, {

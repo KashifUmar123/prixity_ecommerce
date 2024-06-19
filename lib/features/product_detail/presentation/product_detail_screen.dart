@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -127,12 +126,19 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           )
                         ],
                       ),
-                      CustomButton(
-                        title: "ADD TO CART",
-                        backgroundColor: AppColors.black,
-                        titleColor: AppColors.white,
-                        width: 156.w,
-                        onTap: () => controller.onAddToCart(controller.product),
+                      GetBuilder(
+                        init: controller.cartController,
+                        builder: (_) {
+                          return CustomButton(
+                            title: "ADD TO CART",
+                            backgroundColor: AppColors.black,
+                            titleColor: AppColors.white,
+                            width: 156.w,
+                            isDisable: controller.productAlreadyAddedInCart(),
+                            onTap: () =>
+                                controller.onAddToCart(controller.product),
+                          );
+                        },
                       )
                     ],
                   ),
