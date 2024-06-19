@@ -7,6 +7,7 @@ import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
+import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
 import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
@@ -19,31 +20,83 @@ class DiscoverScreen extends GetView<DiscoverController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      statusBarColor: AppColors.white,
+      systemNavigationBarColor: AppColors.white.withOpacity(.96),
       body: SizedBox(
         height: context.height,
         width: context.width,
         child: GetBuilder(
             init: controller,
             builder: (_) {
-              return Column(
+              return Stack(
                 children: [
-                  50.verticalH,
-                  _buildAppbar(context).horizontalPadding(30.w),
-                  24.verticalH,
-                  _listBrands(context),
-                  30.verticalH,
-                  Expanded(
-                    child: ListView(
-                      padding: EdgeInsets.zero,
+                  Positioned.fill(
+                    child: Column(
                       children: [
-                        _placeProducts(context),
+                        50.verticalH,
+                        _buildAppbar(context).horizontalPadding(30.w),
+                        24.verticalH,
+                        _listBrands(context),
+                        30.verticalH,
+                        Expanded(
+                          child: ListView(
+                            padding: EdgeInsets.zero,
+                            children: [
+                              _placeProducts(context),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
+                  ),
+                  Positioned(
+                    bottom: 30.h,
+                    left: (context.width - 119.w) / 2,
+                    child: _filtersButton(context),
+                  ),
                 ],
               );
             }),
+      ),
+    );
+  }
+
+  _filtersButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        controller.navigator.pushNamed(RoutePaths.filters);
+      },
+      child: Container(
+        height: 40.h,
+        width: 119.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.r),
+          color: AppColors.lightBlack,
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.gray,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomImage(
+                imagePath: KImages.filters,
+                height: 24.w,
+                width: 24.w,
+              ),
+              12.horizontalW,
+              Text(
+                "Filters",
+                style: context.lable14700.copyWith(
+                  color: AppColors.white,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -90,6 +143,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
                     imagePath: KImages.nike,
                     height: 24.w,
                     width: 24.w,
+                    color: AppColors.gray,
                   ),
                   5.verticalH,
                   CustomImage(

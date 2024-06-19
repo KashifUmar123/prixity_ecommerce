@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -9,10 +8,10 @@ import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_appbar.dart';
-import 'package:prixity_ecommerce_app/core/widgets/custom_button.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
+import 'package:prixity_ecommerce_app/features/order_summary/presentation/order_summary_screen.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});
@@ -36,48 +35,12 @@ class CartScreen extends GetView<CartController> {
                   Expanded(
                     child: _slideableList(context),
                   ),
-                  Container(
-                    height: Platform.isIOS ? 110.h : 90.h,
-                    width: double.infinity,
-                    padding: EdgeInsetsDirectional.only(
-                      start: 30.w,
-                      end: 30.w,
-                      top: 17.h,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: AppColors.white,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Grand Total",
-                              style: context.lable12400.copyWith(
-                                color: AppColors.gray,
-                              ),
-                            ),
-                            5.verticalH,
-                            Text(
-                              "\$${controller.totalPrice}",
-                              style: context.lable20700,
-                            )
-                          ],
-                        ),
-                        CustomButton(
-                          title: "CHECK OUT",
-                          backgroundColor: AppColors.black,
-                          titleColor: AppColors.white,
-                          width: 156.w,
-                          isDisable: controller.products.isEmpty,
-                          onTap: controller.onCheckout,
-                        )
-                      ],
-                    ),
+                  CustomContainerWithTitleAndButton(
+                    title: "Grand total",
+                    amount: "\$${controller.totalPrice}",
+                    btnText: "CHECK OUT",
+                    isDisable: controller.products.isEmpty,
+                    btnCallback: controller.onCheckout,
                   ),
                 ],
               );
