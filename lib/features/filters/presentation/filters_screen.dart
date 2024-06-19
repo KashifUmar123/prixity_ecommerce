@@ -6,7 +6,6 @@ import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
-import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_appbar.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_button.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
@@ -73,7 +72,7 @@ class FiltersScreen extends GetView<FiltersController> {
                 ),
                 FilterButtons(
                   resetText: "RESET (4)",
-                  onApply: () {},
+                  onApply: controller.onApply,
                   onResset: () {},
                 ),
               ],
@@ -458,7 +457,7 @@ class BrandsFilter extends StatelessWidget {
         20.verticalH,
         SizedBox(
           width: context.width,
-          height: 103.h,
+          height: 105.h,
           child: ListView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),

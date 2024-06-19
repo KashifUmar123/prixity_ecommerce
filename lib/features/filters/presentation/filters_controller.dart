@@ -1,8 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
+import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
+import 'package:prixity_ecommerce_app/features/discover/data/models/filter_params.dart';
 import 'package:prixity_ecommerce_app/features/filters/domain/entities/brand.dart';
 
 class CustomColor {
@@ -13,6 +16,25 @@ class CustomColor {
     required this.name,
     required this.color,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'color': color.value,
+    };
+  }
+
+  factory CustomColor.fromMap(Map<String, dynamic> map) {
+    return CustomColor(
+      name: map['name'] as String,
+      color: Color(map['color'] as int),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory CustomColor.fromJson(String source) =>
+      CustomColor.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class FiltersController extends BaseController {
@@ -25,6 +47,20 @@ class FiltersController extends BaseController {
     Brand(name: "Adidas", iconPath: KImages.adidas),
     Brand(name: "Reebok", iconPath: KImages.reebok),
   ];
+
+  @override
+  void onInit() {
+    super.onInit();
+    final args = Get.arguments;
+    if (args != null && args is FilterParams) {
+      selectedBrand = args.brand;
+      log("Brand: $selectedBrand");
+      selectedPriceRange = args.rangeValues ?? const RangeValues(300, 1000);
+      selectedSortBy = args.sortBy;
+      selectedGender = args.gender;
+      selectedColor = args.color;
+    }
+  }
 
   Brand? selectedBrand;
 
@@ -71,7 +107,7 @@ class FiltersController extends BaseController {
 
   // ********************** Gender
 
-  final List<String> genders = ["Man", "Woman", "Unisex"];
+  final List<String> genders = ["Male", "Female", "Unisex"];
 
   String? selectedGender;
 
@@ -119,4 +155,33 @@ class FiltersController extends BaseController {
   }
 
   // ********************** Color end
+
+  // ********************** onApply
+  void onApply() {
+    FilterParams params = FilterParams();
+    // check the brand
+    if (selectedBrand != null) {
+      params.brand = selectedBrand;
+    }
+
+    // check range
+    params.rangeValues = selectedPriceRange;
+
+    // check sort by
+    if (selectedSortBy != null) {
+      params.sortBy = selectedSortBy;
+    }
+
+    // check gender
+    if (selectedGender != null) {
+      params.gender = selectedGender;
+    }
+
+    // check color
+    if (selectedColor != null) {
+      params.color = selectedColor;
+    }
+
+    Get.find<INavigator>().pop(result: params);
+  }
 }

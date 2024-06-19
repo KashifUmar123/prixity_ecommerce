@@ -16,6 +16,7 @@ import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_rating_display.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_review_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
+import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/product_detail_controller.dart';
 
 class ProductDetailScreen extends GetView<ProductDetailController> {
@@ -70,17 +71,16 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           ),
                           10.verticalH,
                           Text(
-                            // controller.product.description,
-                            "Engineered to crush any movement-based workout, these On sneakers enhance the label's original Cloud sneaker with cutting edge technologies for a pair. ",
+                            controller.product.description,
                             style: context.lable14400,
                           ),
                           30.verticalH,
                           Text(
-                            "Review (${controller.product.reviews.length})",
+                            "Review (${controller.product.totalReviews})",
                             style: context.lable16600,
                           ),
                           10.verticalH,
-                          ...controller.product.reviews.take(3).map(
+                          ...sampleReviews.take(3).map(
                                 (e) => CustomReviewWidget(review: e)
                                     .bottomPadding(30.w),
                               ),
@@ -206,7 +206,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         Text("4.5", style: context.lable11700),
         5.horizontalW,
         Text(
-          "(${controller.product.reviews.length} Reviews)",
+          "(${controller.product.totalReviews} Reviews)",
           style: context.lable11400.copyWith(color: AppColors.gray),
         ),
       ],
@@ -278,7 +278,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                 margin: EdgeInsetsDirectional.only(end: 10.w),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: e,
+                  color: e.color,
                   border: Border.all(
                     color: AppColors.graySecondary,
                     width: 1.r,
@@ -288,7 +288,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                     ? Center(
                         child: Icon(
                           Icons.check,
-                          color: Utils.isColorLighterThanGray(e)
+                          color: Utils.isColorLighterThanGray(e.color)
                               ? AppColors.black
                               : AppColors.white,
                           size: 10.r,

@@ -7,12 +7,11 @@ import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
-import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
-import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_controller.dart';
+import 'package:prixity_ecommerce_app/features/filters/domain/entities/brand.dart';
 
 class DiscoverScreen extends GetView<DiscoverController> {
   const DiscoverScreen({super.key});
@@ -38,12 +37,18 @@ class DiscoverScreen extends GetView<DiscoverController> {
                         _listBrands(context),
                         30.verticalH,
                         Expanded(
-                          child: ListView(
-                            padding: EdgeInsets.zero,
-                            children: [
-                              _placeProducts(context),
-                            ],
-                          ),
+                          child: controller.isLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.lightBlack,
+                                  ),
+                                )
+                              : ListView(
+                                  padding: EdgeInsets.zero,
+                                  children: [
+                                    _placeProducts(context),
+                                  ],
+                                ),
                         )
                       ],
                     ),
@@ -62,9 +67,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
 
   _filtersButton(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        controller.navigator.pushNamed(RoutePaths.filters);
-      },
+      onTap: controller.onFiltersTap,
       child: Container(
         height: 40.h,
         width: 119.w,
@@ -105,7 +108,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
     return Wrap(
       alignment: WrapAlignment.spaceBetween,
       children: [
-        ...products.map(
+        ...controller.products.map(
           (e) => _productWidget(
             context,
             product: e,
@@ -140,7 +143,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomImage(
-                    imagePath: KImages.nike,
+                    imagePath: product.brand.iconPath,
                     height: 24.w,
                     width: 24.w,
                     color: AppColors.gray,
@@ -171,10 +174,10 @@ class DiscoverScreen extends GetView<DiscoverController> {
                   size: 12.w,
                 ),
                 5.horizontalW,
-                Text("4.5", style: context.lable11700),
+                Text(product.stars.toString(), style: context.lable11700),
                 5.horizontalW,
                 Text(
-                  "(${product.reviews.length} Reviews)",
+                  "(${product.totalReviews} Reviews)",
                   style: context.lable11400.copyWith(
                     color: AppColors.gray,
                   ),
@@ -193,20 +196,23 @@ class DiscoverScreen extends GetView<DiscoverController> {
       width: double.infinity,
       height: 32.h,
       child: ListView(
+        padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
         scrollDirection: Axis.horizontal,
         children: [
           30.horizontalW,
-          ...controller.brands.map((brand) {
-            return _brandListItem(
-              context,
-              value: brand,
-              onTap: controller.setBrand,
-              isSelected: brand == controller.selectedBrand,
-            );
-          }),
+          ...controller.brands.map(
+            (brand) {
+              return _brandListItem(
+                context,
+                value: brand,
+                onTap: controller.setBrand,
+                isSelected: brand == controller.selectedBrand,
+              );
+            },
+          ),
         ],
       ),
     );
@@ -214,8 +220,8 @@ class DiscoverScreen extends GetView<DiscoverController> {
 
   Widget _brandListItem(
     BuildContext context, {
-    required String value,
-    required Function(String) onTap,
+    required Brand value,
+    required Function(Brand) onTap,
     bool isSelected = false,
   }) {
     return Padding(
@@ -223,7 +229,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
       child: GestureDetector(
         onTap: () => onTap.call(value),
         child: Text(
-          value,
+          value.name,
           style: context.lable20700.copyWith(
             color: isSelected ? AppColors.black : AppColors.gray,
           ),

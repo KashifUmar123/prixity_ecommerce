@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
 import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
@@ -6,6 +5,7 @@ import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/utils/utils.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
+import 'package:prixity_ecommerce_app/features/filters/presentation/filters_controller.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/widgets/add_to_cart_bottomsheet.dart';
 
 class ProductDetailController extends BaseController {
@@ -16,7 +16,7 @@ class ProductDetailController extends BaseController {
   });
 
   late Product product;
-  late Color seletedColor;
+  late CustomColor seletedColor;
   late num selectedSize;
   int pageIndex = 0;
 
@@ -36,7 +36,7 @@ class ProductDetailController extends BaseController {
     update();
   }
 
-  setColor(Color value) {
+  setColor(CustomColor value) {
     seletedColor = value;
     update();
   }

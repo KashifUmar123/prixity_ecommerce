@@ -27,7 +27,6 @@ class AppRoutes {
       page: () => const DiscoverScreen(),
       bindings: [
         DiscoverBindings(),
-        FiltersBindings(),
       ],
     ),
     GetPage(
@@ -52,6 +51,7 @@ class AppRoutes {
     GetPage(
       name: RoutePaths.filters,
       page: () => const FiltersScreen(),
+      binding: FiltersBindings(),
     ),
   ];
 
