@@ -54,7 +54,10 @@ class ProductAddedBottomsheer extends StatelessWidget {
             CustomButton(
               title: "BACK EXPLORE",
               width: 150.w,
-              onTap: Get.find<INavigator>().pop,
+              onTap: () {
+                Get.find<INavigator>().pop();
+                Get.find<INavigator>().pop();
+              },
             ),
             CustomButton(
               title: "TO CART",

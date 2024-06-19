@@ -66,4 +66,12 @@ extension TextstyleExtension on BuildContext {
           color: AppColors.lightBlack,
         ),
       );
+
+  TextStyle get lable18700 => GoogleFonts.urbanist(
+        textStyle: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w700,
+          color: AppColors.lightBlack,
+        ),
+      );
 }

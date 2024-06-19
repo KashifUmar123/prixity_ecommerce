@@ -73,6 +73,8 @@ class CartScreen extends GetView<CartController> {
                           backgroundColor: AppColors.black,
                           titleColor: AppColors.white,
                           width: 156.w,
+                          isDisable: controller.products.isEmpty,
+                          onTap: controller.onCheckout,
                         )
                       ],
                     ),

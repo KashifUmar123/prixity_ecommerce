@@ -4,6 +4,8 @@ import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/features/cart/cart_screen.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_bindings.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_screen.dart';
+import 'package:prixity_ecommerce_app/features/order_summary/presentation/order_summary_bindings.dart';
+import 'package:prixity_ecommerce_app/features/order_summary/presentation/order_summary_screen.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/product_detail_bindings.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/product_detail_screen.dart';
 import 'package:prixity_ecommerce_app/features/reviews/presentation/reviews_bindings.dart';
@@ -36,6 +38,11 @@ class AppRoutes {
     GetPage(
       name: RoutePaths.cart,
       page: () => const CartScreen(),
+    ),
+    GetPage(
+      name: RoutePaths.orderSummary,
+      page: () => const OrderSummaryScreen(),
+      binding: OrderSummaryBindings(),
     ),
   ];
 

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
+import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/utils/utils.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/widgets/product_added_bottomsheet.dart';
@@ -30,6 +31,8 @@ class CartController extends BaseController {
   CartController({required super.navigator});
   List<CartProduct> products = [];
 
+  num shippingCost = 20;
+
   addProduct(CartProduct product) {
     products.insert(0, product);
     update();
@@ -56,6 +59,10 @@ class CartController extends BaseController {
     Utils.showBottomSheet(
       child: const ProductAddedBottomsheer(),
     );
+  }
+
+  onCheckout() {
+    navigator.pushNamed(RoutePaths.orderSummary);
   }
 
   double get totalPrice {
