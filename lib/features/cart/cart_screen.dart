@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_container_with_title_and_button.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_empty_state_widget.dart';
 import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
@@ -12,7 +13,6 @@ import 'package:prixity_ecommerce_app/core/widgets/custom_appbar.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
-import 'package:prixity_ecommerce_app/features/order_summary/presentation/order_summary_screen.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});

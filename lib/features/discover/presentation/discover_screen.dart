@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_empty_state_widget.dart';
 import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
@@ -65,6 +66,10 @@ class DiscoverScreen extends GetView<DiscoverController> {
         subtitle: controller.error ?? "",
         callback: controller.retry,
       );
+    }
+    if (controller.products.isEmpty) {
+      return const Center(
+          child: CustomEmptyStateWidget(message: "Products not found"));
     }
     return RefreshIndicator(
       onRefresh: controller.onRefresh,
