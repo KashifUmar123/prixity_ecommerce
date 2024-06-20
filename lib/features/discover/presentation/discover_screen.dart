@@ -12,8 +12,9 @@ import 'package:prixity_ecommerce_app/core/widgets/custom_error_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
-import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_controller.dart';
+import 'package:prixity_ecommerce_app/features/discover/presentation/widgets/discover_filters_button_widget.dart';
+import 'package:prixity_ecommerce_app/features/discover/presentation/widgets/product_widget.dart';
 import 'package:prixity_ecommerce_app/features/filters/domain/entities/brand.dart';
 
 class DiscoverScreen extends GetView<DiscoverController> {
@@ -49,7 +50,10 @@ class DiscoverScreen extends GetView<DiscoverController> {
                   Positioned(
                     bottom: 30.h,
                     left: (context.width - 119.w) / 2,
-                    child: _filtersButton(context),
+                    child: DiscoverFiltersButtonWidget(
+                      filtersApplied: controller.hasFiltersApplied,
+                      onFiltersTap: controller.onFiltersTap,
+                    ),
                   ),
                 ],
               );
@@ -83,132 +87,18 @@ class DiscoverScreen extends GetView<DiscoverController> {
     );
   }
 
-  _filtersButton(BuildContext context) {
-    return GestureDetector(
-      onTap: controller.onFiltersTap,
-      child: Container(
-        height: 40.h,
-        width: 119.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
-          color: AppColors.lightBlack,
-          boxShadow: const [
-            BoxShadow(
-              color: AppColors.gray,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomImage(
-                imagePath: controller.hasFiltersApplied
-                    ? KImages.filters
-                    : KImages.emptyFilters,
-                height: 24.w,
-                width: 24.w,
-              ),
-              12.horizontalW,
-              Text(
-                "Filters",
-                style: context.lable14700.copyWith(
-                  color: AppColors.white,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _placeProducts(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.spaceBetween,
       children: [
         ...controller.products.map(
-          (e) => _productWidget(
-            context,
+          (e) => ProductWidget(
             product: e,
             onTap: controller.onProductTap,
           ),
         ),
       ],
     ).paddingSymmetric(horizontal: 30.w);
-  }
-
-  Widget _productWidget(
-    BuildContext context, {
-    required Product product,
-    required Function(Product) onTap,
-  }) {
-    return GestureDetector(
-      onTap: () => onTap.call(product),
-      child: SizedBox(
-        width: 150.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 150.h,
-              width: 150.w,
-              decoration: BoxDecoration(
-                color: AppColors.lightBlack.withOpacity(.05),
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomImage(
-                    imagePath: product.brand.iconPath,
-                    height: 24.w,
-                    width: 24.w,
-                    color: AppColors.gray,
-                  ),
-                  5.verticalH,
-                  CustomImage(
-                    imagePath: product.images.first,
-                    height: 85.h,
-                    width: 120.w,
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
-            ),
-            10.verticalH,
-            Text(
-              product.name,
-              style: context.lable12400,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            5.verticalH,
-            Row(
-              children: [
-                Icon(
-                  Icons.star,
-                  color: AppColors.yellow,
-                  size: 12.w,
-                ),
-                5.horizontalW,
-                Text(product.stars.toString(), style: context.lable11700),
-                5.horizontalW,
-                Text(
-                  "(${product.totalReviews} Reviews)",
-                  style: context.lable11400.copyWith(
-                    color: AppColors.gray,
-                  ),
-                ),
-              ],
-            ),
-            Text("\$${product.price}", style: context.lable14700),
-          ],
-        ),
-      ).bottomPadding(30.h),
-    );
   }
 
   Widget _listBrands(BuildContext context) {

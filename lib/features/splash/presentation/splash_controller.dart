@@ -10,7 +10,7 @@ class SplashController extends BaseController {
   void onInit() {
     super.onInit();
     Timer(const Duration(seconds: 1), () {
-      navigator.pushNamed(RoutePaths.discover);
+      navigator.pushReplacementNamed(RoutePaths.discover);
     });
   }
 }
