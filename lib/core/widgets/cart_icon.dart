@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
-import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
+import 'package:prixity_ecommerce_app/features/cart/presentation/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';

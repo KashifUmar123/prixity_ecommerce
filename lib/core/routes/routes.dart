@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
-import 'package:prixity_ecommerce_app/features/cart/cart_screen.dart';
+import 'package:prixity_ecommerce_app/features/cart/presentation/cart_screen.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_bindings.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_screen.dart';
 import 'package:prixity_ecommerce_app/features/filters/presentation/filters_bindings.dart';

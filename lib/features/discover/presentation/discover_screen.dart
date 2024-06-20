@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_empty_state_widget.dart';
-import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
+import 'package:prixity_ecommerce_app/features/cart/presentation/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
