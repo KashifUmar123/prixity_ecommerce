@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
 import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
@@ -35,14 +36,14 @@ class ProductAddedBottomsheer extends StatelessWidget {
         ),
         20.verticalH,
         Text(
-          "Added to cart",
+          AppLocales.addedToCart.tr,
           style: context.lable16600.copyWith(
             fontSize: 24.sp,
           ),
         ),
         5.verticalH,
         Text(
-          "1 Item Total",
+          "1 ${AppLocales.itemTotal.tr}",
           style: context.lable14400.copyWith(
             color: AppColors.grayInCartAddedBottomsheet,
           ),
@@ -52,7 +53,7 @@ class ProductAddedBottomsheer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomButton(
-              title: "BACK EXPLORE",
+              title: AppLocales.backExplore.tr,
               width: 150.w,
               onTap: () {
                 Get.find<INavigator>().pop();
@@ -60,7 +61,7 @@ class ProductAddedBottomsheer extends StatelessWidget {
               },
             ),
             CustomButton(
-              title: "TO CART",
+              title: AppLocales.toCart.tr,
               backgroundColor: AppColors.black,
               titleColor: AppColors.white,
               width: 150.w,

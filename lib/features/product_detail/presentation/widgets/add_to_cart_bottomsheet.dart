@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/features/cart/presentation/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -36,7 +38,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Quantity",
+              AppLocales.quantity.tr,
               style: context.lable20700,
             ),
             IconButton(
@@ -49,7 +51,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
           ],
         ),
         30.verticalH,
-        Text("Quantity", style: context.lable14700),
+        Text(AppLocales.quantity.tr, style: context.lable14700),
         10.verticalH,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +95,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Grand Total",
+                  AppLocales.grandTotal.tr,
                   style: context.lable12400.copyWith(
                     color: AppColors.gray,
                   ),
@@ -106,7 +108,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
               ],
             ),
             CustomButton(
-              title: "ADD TO CART",
+              title: AppLocales.addToCart.tr,
               backgroundColor: AppColors.black,
               titleColor: AppColors.white,
               width: 156.w,

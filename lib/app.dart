@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:prixity_ecommerce_app/core/localisation/translations.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'flavors.dart';
@@ -14,6 +15,9 @@ class App extends StatelessWidget {
       designSize: const Size(375, 872),
       child: GetMaterialApp(
         title: F.title,
+        translations: AppTranslations(),
+        locale: AppTranslations.locales.first,
+        fallbackLocale: AppTranslations.locales.first,
         getPages: AppRoutes.pages,
         initialRoute: RoutePaths.splash,
       ),

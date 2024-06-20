@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -44,7 +45,7 @@ class DiscoverFiltersButtonWidget extends StatelessWidget {
               ),
               12.horizontalW,
               Text(
-                "Filters",
+                AppLocales.filter,
                 style: context.lable14700.copyWith(
                   color: AppColors.white,
                 ),

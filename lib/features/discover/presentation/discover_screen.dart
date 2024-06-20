@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_empty_state_widget.dart';
 import 'package:prixity_ecommerce_app/features/cart/presentation/cart_controller.dart';
@@ -153,7 +154,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Discover",
+          AppLocales.discover.tr,
           style: context.lable30700,
         ),
         GetBuilder(

@@ -1,9 +1,9 @@
-import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide ContextExtensionss;
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -12,6 +12,7 @@ import 'package:prixity_ecommerce_app/core/utils/utils.dart';
 import 'package:prixity_ecommerce_app/core/widgets/cart_icon.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_appbar.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_button.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_container_with_title_and_button.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_rating_display.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_review_widget.dart';
@@ -59,14 +60,14 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           _ratingsAndCount(context),
                           30.verticalH,
                           Text(
-                            "Size",
+                            AppLocales.size.tr,
                             style: context.lable16600,
                           ),
                           10.verticalH,
                           _sizeList(context),
                           30.verticalH,
                           Text(
-                            "Description",
+                            AppLocales.description.tr,
                             style: context.lable16600,
                           ),
                           10.verticalH,
@@ -76,7 +77,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           ),
                           30.verticalH,
                           Text(
-                            "Review (${controller.product.totalReviews})",
+                            "${AppLocales.review.tr} (${controller.product.totalReviews})",
                             style: context.lable16600,
                           ),
                           10.verticalH,
@@ -85,7 +86,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                     .bottomPadding(30.w),
                               ),
                           CustomButton(
-                            title: "SEE ALL REVIEWS",
+                            title: AppLocales.seeAllReviews.tr,
                             onTap: controller.onSeeAllReviews,
                           ),
                           30.verticalH,
@@ -94,55 +95,19 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                     ],
                   ),
                 ),
-                Container(
-                  height: Platform.isIOS ? 110.h : 90.h,
-                  width: double.infinity,
-                  padding: EdgeInsetsDirectional.only(
-                    start: 30.w,
-                    end: 30.w,
-                    top: 17.h,
-                  ),
-                  decoration: const BoxDecoration(
-                    color: AppColors.white,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Price",
-                            style: context.lable12400.copyWith(
-                              color: AppColors.gray,
-                            ),
-                          ),
-                          5.verticalH,
-                          Text(
-                            "\$${controller.product.price}",
-                            style: context.lable20700,
-                          )
-                        ],
-                      ),
-                      GetBuilder(
-                        init: controller.cartController,
-                        builder: (_) {
-                          return CustomButton(
-                            title: "ADD TO CART",
-                            backgroundColor: AppColors.black,
-                            titleColor: AppColors.white,
-                            width: 156.w,
-                            isDisable: controller.productAlreadyAddedInCart(),
-                            onTap: () =>
-                                controller.onAddToCart(controller.product),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                ),
+                GetBuilder(
+                    init: controller.cartController,
+                    builder: (context) {
+                      return CustomContainerWithTitleAndButton(
+                        title: AppLocales.price.tr,
+                        amount: "\$${controller.product.price}",
+                        btnText: AppLocales.addToCart.tr,
+                        isDisable: controller.productAlreadyAddedInCart(),
+                        btnCallback: () => controller.onAddToCart(
+                          controller.product,
+                        ),
+                      );
+                    }),
               ],
             );
           },

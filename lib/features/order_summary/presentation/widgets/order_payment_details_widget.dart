@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -16,25 +18,25 @@ class OrderPaymentDetailsBlock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Payment Detail",
+          AppLocales.paymentDetail.tr,
           style: context.lable18700,
         ),
         20.verticalH,
         _buildRowContent(
           context,
-          title: "Sub Total",
+          title: AppLocales.subTotal.tr,
           amount: cartController.totalPrice,
         ),
         20.verticalH,
         _buildRowContent(
           context,
-          title: "Shipping",
+          title: AppLocales.shipping.tr,
           amount: cartController.shippingCost,
         ),
         20.verticalH,
         _buildRowContent(
           context,
-          title: "Total Order",
+          title: AppLocales.totalOrder.tr,
           amount: cartController.shippingCost + cartController.totalPrice,
         ),
       ],

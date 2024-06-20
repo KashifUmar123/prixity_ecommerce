@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -16,19 +18,19 @@ class OrderInformationBlock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Information",
+          AppLocales.information.tr,
           style: context.lable18700,
         ),
         20.verticalH,
         _informationReusableWidget(
           context,
-          title: "Payment Method",
+          title: AppLocales.paymentMethod.tr,
           subtitle: "Credit Card",
         ),
         40.verticalH,
         _informationReusableWidget(
           context,
-          title: "Location",
+          title: AppLocales.location.tr,
           subtitle: "Semarang, Indonesia",
         ),
       ],
