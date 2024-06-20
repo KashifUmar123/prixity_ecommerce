@@ -17,7 +17,7 @@ import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_rating_display.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_review_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
-import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
+import 'package:prixity_ecommerce_app/core/dummy_data/dummy_data.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/product_detail_controller.dart';
 
 class ProductDetailScreen extends GetView<ProductDetailController> {

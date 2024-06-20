@@ -1,5 +1,5 @@
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
-import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
+import 'package:prixity_ecommerce_app/core/dummy_data/dummy_data.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 
 class ReviewsController extends BaseController {

@@ -33,7 +33,7 @@ class ReviewsScreen extends GetView<ReviewsController> {
                   CustomAppbar(
                     actions: const [CartIcon()],
                     title:
-                        "${AppLocales.review.tr} ${controller.reviews.length}",
+                        "${AppLocales.reviews.tr} (${controller.reviews.length})",
                   ).horizontalPadding(30.w),
                   20.verticalH,
                   _listReviewsTabs(context),
