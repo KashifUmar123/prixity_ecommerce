@@ -65,6 +65,11 @@ class CartController extends BaseController {
     navigator.pushNamed(RoutePaths.orderSummary);
   }
 
+  emptyCart() {
+    products = [];
+    update();
+  }
+
   double get totalPrice {
     double total = 0;
     for (var element in products) {

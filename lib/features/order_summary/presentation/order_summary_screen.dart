@@ -57,7 +57,7 @@ class OrderSummaryScreen extends GetView<OrderSummaryController> {
               amount:
                   "\$${controller.cartController.totalPrice + controller.cartController.shippingCost}",
               btnText: "PAY",
-              btnCallback: () {},
+              btnCallback: controller.onPay,
             ),
           ],
         ),

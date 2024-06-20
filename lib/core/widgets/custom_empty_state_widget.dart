@@ -4,18 +4,13 @@ import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/theme_extension.dart';
-import 'package:prixity_ecommerce_app/core/widgets/custom_button.dart';
 
-class CustomErrorWidget extends StatelessWidget {
-  const CustomErrorWidget({
+class CustomEmptyStateWidget extends StatelessWidget {
+  const CustomEmptyStateWidget({
     super.key,
-    this.title = "Oops",
-    required this.subtitle,
-    this.callback,
+    required this.message,
   });
-  final String title;
-  final String subtitle;
-  final VoidCallback? callback;
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -45,34 +40,20 @@ class CustomErrorWidget extends StatelessWidget {
             ),
             child: Center(
               child: Icon(
-                Icons.error,
+                Icons.hourglass_empty,
                 color: AppColors.gray,
                 size: 60.r,
               ),
             ),
           ),
           30.verticalH,
-          Text(
-            title,
-            style: context.lable20700,
-          ),
           10.verticalH,
           Text(
-            subtitle,
+            message,
             style: context.lable14400,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          if (callback != null) ...[
-            30.verticalH,
-            CustomButton(
-              title: "Retry",
-              backgroundColor: AppColors.lightBlack,
-              titleColor: AppColors.white,
-              width: 200.w,
-              onTap: callback,
-            ),
-          ],
         ],
       ),
     );

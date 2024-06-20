@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_empty_state_widget.dart';
 import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
@@ -34,7 +35,7 @@ class CartScreen extends GetView<CartController> {
                   ).horizontalPadding(30.w),
                   30.verticalH,
                   Expanded(
-                    child: _slideableList(context),
+                    child: _bodyView(context),
                   ),
                   CustomContainerWithTitleAndButton(
                     title: "Grand total",
@@ -48,6 +49,18 @@ class CartScreen extends GetView<CartController> {
             }),
       ),
     );
+  }
+
+  _bodyView(BuildContext context) {
+    if (controller.products.isEmpty) {
+      return const Center(
+        child: CustomEmptyStateWidget(
+          message: "Cart is empty",
+        ),
+      );
+    }
+
+    return _slideableList(context);
   }
 
   _slideableList(BuildContext context) {
