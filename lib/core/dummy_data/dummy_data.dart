@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
@@ -18,24 +19,24 @@ List<Review> sampleReviews = List.generate(
   ),
 );
 
-// List<Product> products = List.generate(
-//   100,
-//   (index) => Product(
-//     id: 'product_$index',
-//     name: 'Product $index',
-//     brand: getBrand(),
-//     description: Faker().lorem.sentences(5).join(" "),
-//     sizes: [8, 9, 10, 11, 12, 13, 14, 15],
-//     images: getRandomImagePaths(),
-//     colors: getColors(),
-//     price: (index + 1) * 10.0,
-//     createdAt: DateTime.now().millisecondsSinceEpoch,
-//     updatedAt: DateTime.now().millisecondsSinceEpoch,
-//     gender: getGender(),
-//     stars: num.parse(getRandomDouble()),
-//     totalReviews: getRandomTotalReviews(),
-//   ),
-// );
+List<Product> products = List.generate(
+  100,
+  (index) => Product(
+    id: 'product_$index',
+    name: 'Product $index',
+    brand: getBrand(),
+    description: Faker().lorem.sentences(5).join(" "),
+    sizes: [8, 9, 10, 11, 12, 13, 14, 15],
+    images: getRandomImagePaths(),
+    colors: getColors(),
+    price: (index + 1) * 10.0,
+    createdAt: DateTime.now().millisecondsSinceEpoch,
+    updatedAt: DateTime.now().millisecondsSinceEpoch,
+    gender: getGender(),
+    stars: num.parse(getRandomDouble()),
+    totalReviews: getRandomTotalReviews(),
+  ),
+);
 
 int getRandomTotalReviews() {
   final random = Random();
@@ -73,11 +74,18 @@ String getGender() {
 }
 
 List<String> getRandomImagePaths() {
-  return [
-    "assets/shoes/shoe_7.png",
-    "assets/shoes/shoe_7.png",
-    "assets/shoes/shoe_7.png",
+  List<String> images = [
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871352242.jpg?alt=media&token=7631f524-5f58-4d94-8cb6-a89b22420f23",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871356020.jpg?alt=media&token=f5ce5ba9-1b2a-4b3c-953e-1a12d36b7137",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871359412.jpg?alt=media&token=5e7a8838-c7e1-40c6-ba5f-809403f54303",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871362613.jpg?alt=media&token=a827d04e-763e-4c20-be27-80d1a80acc14",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871366178.jpg?alt=media&token=50a839ad-c469-4e1d-91b1-2c54a5ffad9f",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871369591.jpg?alt=media&token=7c993a8d-fffa-4f94-bc7e-67b19672ff13",
+    "https://firebasestorage.googleapis.com/v0/b/prixity-soft-e-commerce-app.appspot.com/o/shoe_image-1718871372904.jpg?alt=media&token=4428c258-5c24-4000-b9d3-6906d23df71b",
   ];
+
+  images.shuffle();
+  return images.take(3).toList();
 }
 
 List<CustomColor> getColors() {
@@ -130,4 +138,38 @@ List<CustomColor> getColors() {
 //   } catch (e) {
 //     print("Something went wrong");
 //   }
+// }
+
+// Future<void> uploadImagesFromAssets(
+//     List<String> assetPaths, String fileNamePrefix) async {
+//   final storageRef = FirebaseStorage.instance.ref();
+//   final sb = StringBuffer(); // To build the text file content
+
+//   for (final assetPath in assetPaths) {
+//     final fileName =
+//         '$fileNamePrefix-${DateTime.now().millisecondsSinceEpoch}.jpg'; // Unique filenames
+//     final imageRef = storageRef.child(fileName);
+
+//     try {
+//       final byteData = await rootBundle.load(assetPath);
+//       final imageData = byteData.buffer
+//           .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+//       final uploadTask = imageRef.putData(imageData);
+
+//       uploadTask.snapshotEvents.listen((event) {
+//         final progress = event.bytesTransferred / event.totalBytes;
+//         print('Uploading $assetPath: ${progress.toStringAsFixed(2)}');
+//       });
+
+//       final downloadUrl = await (await uploadTask).ref.getDownloadURL();
+//       sb.write(downloadUrl);
+//       sb.write('\n\n'); // Add two line breaks after each URL
+//       print('Uploaded $assetPath: $downloadUrl');
+//     } catch (error) {
+//       print('Error uploading $assetPath: $error');
+//     }
+//   }
+
+//   final file = File('links.txt');
+//   await file.writeAsString(sb.toString());
 // }

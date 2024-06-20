@@ -12,6 +12,23 @@ class InitalBindings {
     // load translations
     await AppTranslations.loadTranslations();
 
+    // upload dummy data to firestore
+    // await uploadDummyData();
+
+    // uncomment for uploading an image to firebase storage
+    // await uploadImagesFromAssets(
+    //   [
+    //     "assets/shoes/shoe_1.png",
+    //     "assets/shoes/shoe_2.png",
+    //     "assets/shoes/shoe_3.png",
+    //     "assets/shoes/shoe_4.png",
+    //     "assets/shoes/shoe_5.png",
+    //     "assets/shoes/shoe_6.png",
+    //     "assets/shoes/shoe_7.png",
+    //   ],
+    //   "shoe_image",
+    // );
+
     // put navigator
     Get.lazyPut<INavigator>(() => NavigatorImpl());
 

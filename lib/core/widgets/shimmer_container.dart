@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -16,7 +17,10 @@ class ShimmerContainer extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        color: AppColors.white,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
       ),
     );
   }

@@ -43,8 +43,17 @@ class ProductWidget extends StatelessWidget {
                     color: AppColors.gray,
                   ),
                   5.verticalH,
+                  // Image.network(
+                  //   product.images.first,
+                  //   // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMy94tWPm8Ag19tVrAg1YBkMhF1mMiGwrAjQ&s",
+                  //   height: 85.h,
+                  //   width: 120.w,
+                  //   fit: BoxFit.cover,
+                  // ),
                   CustomImage(
                     imagePath: product.images.first,
+                    // imagePath:
+                    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMy94tWPm8Ag19tVrAg1YBkMhF1mMiGwrAjQ&s",
                     height: 85.h,
                     width: 120.w,
                     fit: BoxFit.cover,

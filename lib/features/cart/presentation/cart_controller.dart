@@ -2,30 +2,8 @@
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
 import 'package:prixity_ecommerce_app/core/utils/utils.dart';
-import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
+import 'package:prixity_ecommerce_app/features/cart/entities/cart_prodcut.dart';
 import 'package:prixity_ecommerce_app/features/product_detail/presentation/widgets/product_added_bottomsheet.dart';
-
-class ProductParams {
-  int quantity;
-  String color;
-  num size;
-
-  ProductParams({
-    this.quantity = 1,
-    required this.color,
-    required this.size,
-  });
-}
-
-class CartProduct {
-  Product product;
-  ProductParams params;
-
-  CartProduct({
-    required this.params,
-    required this.product,
-  });
-}
 
 class CartController extends BaseController {
   CartController({required super.navigator});

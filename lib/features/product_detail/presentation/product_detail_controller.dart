@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
+import 'package:prixity_ecommerce_app/features/cart/entities/product_params.dart';
 import 'package:prixity_ecommerce_app/features/cart/presentation/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
