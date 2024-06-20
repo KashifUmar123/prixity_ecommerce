@@ -3,6 +3,7 @@ import 'package:prixity_ecommerce_app/features/filters/domain/entities/brand.dar
 import 'package:prixity_ecommerce_app/features/filters/presentation/filters_controller.dart';
 
 class FilterParams {
+  String? lastProductId;
   Brand? brand;
   RangeValues? rangeValues;
   String? sortBy;
@@ -11,6 +12,6 @@ class FilterParams {
 
   @override
   String toString() {
-    return "Brand: ${brand?.toMap()}, Range: $rangeValues, SortBy: $sortBy, Gender: $gender, Color: ${color?.toMap()}";
+    return "Brand: ${brand?.toMap()}, Range: $rangeValues, SortBy: $sortBy, Gender: $gender, Color: ${color?.toMap()}, lastProductId: $lastProductId";
   }
 }

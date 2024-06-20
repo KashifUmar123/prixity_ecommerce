@@ -39,10 +39,11 @@ class CustomScaffold extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-        statusBarBrightness: Brightness.light, // For iOS (dark icons)
-        statusBarColor: statusBarColor ?? AppColors.white.withOpacity(.96),
+        statusBarBrightness: Brightness.dark, // For iOS (dark icons)
+        statusBarColor: statusBarColor ?? AppColors.white.withOpacity(.3),
         systemNavigationBarColor:
-            systemNavigationBarColor ?? AppColors.white.withOpacity(.96),
+            systemNavigationBarColor ?? AppColors.gray.withOpacity(.15),
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
       child: SafeArea(
         top: topSafearea,

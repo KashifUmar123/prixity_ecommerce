@@ -19,6 +19,7 @@ class CartScreen extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      systemNavigationBarColor: AppColors.white,
       body: SizedBox(
         height: context.height,
         width: context.width,

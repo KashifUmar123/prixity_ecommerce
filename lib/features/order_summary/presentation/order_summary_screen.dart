@@ -223,8 +223,11 @@ class OrderDetailsBlock extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "${product.brand} . ${cartProduct.params.color} . ${cartProduct.params.size} . Qty ${cartProduct.params.quantity}",
+            Expanded(
+              child: Text(
+                "${product.brand.name} . ${cartProduct.params.color} . ${cartProduct.params.size} . Qty ${cartProduct.params.quantity}",
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Text(
               "\$${cartProduct.params.quantity * product.price}",

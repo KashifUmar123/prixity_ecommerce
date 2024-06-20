@@ -19,7 +19,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      systemNavigationBarColor: AppColors.white.withOpacity(.96),
+      // systemNavigationBarColor: AppColors.gray.withOpacity(.15),
       body: SizedBox(
         height: context.height,
         width: context.width,
@@ -44,6 +44,7 @@ class DiscoverScreen extends GetView<DiscoverController> {
                                   ),
                                 )
                               : ListView(
+                                  controller: controller.scrollController,
                                   padding: EdgeInsets.zero,
                                   children: [
                                     _placeProducts(context),
