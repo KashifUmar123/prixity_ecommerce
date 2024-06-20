@@ -7,4 +7,5 @@ class KImages {
   static const String reebok = "assets/brands/reebok.png";
   static const String profile1 = "assets/images/profile_1.png";
   static const String filters = "assets/icons/filters.png";
+  static const String emptyFilters = "assets/icons/empty_flters.png";
 }

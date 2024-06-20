@@ -71,9 +71,9 @@ class FiltersScreen extends GetView<FiltersController> {
                   ),
                 ),
                 FilterButtons(
-                  resetText: "RESET (4)",
+                  resetText: "RESET (${controller.getTotalFilter})",
                   onApply: controller.onApply,
-                  onResset: () {},
+                  onResset: controller.resetFilters,
                 ),
               ],
             );

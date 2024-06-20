@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_contants.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
 import 'package:prixity_ecommerce_app/core/routes/navigator.dart';
@@ -39,6 +39,7 @@ class CustomColor {
 
 class FiltersController extends BaseController {
   FiltersController({required super.navigator});
+  final RangeValues defaultRangeValues = AppConstants.defaultRangeValues;
 
   // ************* Brand setup
   final List<Brand> brands = [
@@ -52,10 +53,10 @@ class FiltersController extends BaseController {
   void onInit() {
     super.onInit();
     final args = Get.arguments;
+    selectedPriceRange = defaultRangeValues;
     if (args != null && args is FilterParams) {
       selectedBrand = args.brand;
-      log("Brand: $selectedBrand");
-      selectedPriceRange = args.rangeValues ?? const RangeValues(300, 1000);
+      selectedPriceRange = args.rangeValues ?? defaultRangeValues;
       selectedSortBy = args.sortBy;
       selectedGender = args.gender;
       selectedColor = args.color;
@@ -75,7 +76,7 @@ class FiltersController extends BaseController {
   // ********************** brand setup end
 
   // ********************** Price range
-  RangeValues selectedPriceRange = const RangeValues(300, 1000);
+  late RangeValues selectedPriceRange;
 
   setPriceRange(RangeValues value) {
     selectedPriceRange = value;
@@ -183,5 +184,31 @@ class FiltersController extends BaseController {
     }
 
     Get.find<INavigator>().pop(result: params);
+  }
+
+  int get getTotalFilter {
+    int total = 1;
+    if (selectedBrand != null) {
+      total++;
+    }
+    if (selectedSortBy != null) {
+      total++;
+    }
+    if (selectedGender != null) {
+      total++;
+    }
+    if (selectedColor != null) {
+      total++;
+    }
+    return total;
+  }
+
+  void resetFilters() {
+    selectedPriceRange = defaultRangeValues;
+    selectedBrand = null;
+    selectedSortBy = null;
+    selectedGender = null;
+    selectedColor = null;
+    update();
   }
 }

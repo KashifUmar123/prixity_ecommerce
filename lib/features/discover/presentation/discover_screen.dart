@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
-import 'package:prixity_ecommerce_app/core/controllers/cart_controller.dart';
+import 'package:prixity_ecommerce_app/features/cart/cart_controller.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_error_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_image.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 import 'package:prixity_ecommerce_app/features/discover/presentation/discover_controller.dart';
@@ -19,7 +21,6 @@ class DiscoverScreen extends GetView<DiscoverController> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      // systemNavigationBarColor: AppColors.gray.withOpacity(.15),
       body: SizedBox(
         height: context.height,
         width: context.width,
@@ -33,23 +34,13 @@ class DiscoverScreen extends GetView<DiscoverController> {
                       children: [
                         50.verticalH,
                         _buildAppbar(context).horizontalPadding(30.w),
-                        24.verticalH,
-                        _listBrands(context),
+                        if (controller.error == null) ...[
+                          24.verticalH,
+                          _listBrands(context),
+                        ],
                         30.verticalH,
                         Expanded(
-                          child: controller.isLoading
-                              ? const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.lightBlack,
-                                  ),
-                                )
-                              : ListView(
-                                  controller: controller.scrollController,
-                                  padding: EdgeInsets.zero,
-                                  children: [
-                                    _placeProducts(context),
-                                  ],
-                                ),
+                          child: _bodyView(context),
                         )
                       ],
                     ),
@@ -62,6 +53,27 @@ class DiscoverScreen extends GetView<DiscoverController> {
                 ],
               );
             }),
+      ),
+    );
+  }
+
+  _bodyView(BuildContext context) {
+    if (controller.isLoading) {
+      return const CustomLoadingWidget();
+    } else if (controller.error != null) {
+      return CustomErrorWidget(
+        subtitle: controller.error ?? "",
+        callback: controller.retry,
+      );
+    }
+    return RefreshIndicator(
+      onRefresh: controller.onRefresh,
+      child: ListView(
+        controller: controller.scrollController,
+        padding: EdgeInsets.zero,
+        children: [
+          _placeProducts(context),
+        ],
       ),
     );
   }
@@ -87,7 +99,9 @@ class DiscoverScreen extends GetView<DiscoverController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImage(
-                imagePath: KImages.filters,
+                imagePath: controller.hasFiltersApplied
+                    ? KImages.filters
+                    : KImages.emptyFilters,
                 height: 24.w,
                 width: 24.w,
               ),

@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_contants.dart';
 import 'package:prixity_ecommerce_app/core/constants/images_constants.dart';
 import 'package:prixity_ecommerce_app/core/controllers/base_controller.dart';
 import 'package:prixity_ecommerce_app/core/routes/routes_paths.dart';
+import 'package:prixity_ecommerce_app/core/widgets/custom_snackbar.dart';
 import 'package:prixity_ecommerce_app/features/discover/data/models/filter_params.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/model/product_entity.dart';
 import 'package:prixity_ecommerce_app/features/discover/domain/usecases/get_products_usecase.dart';
@@ -39,8 +41,17 @@ class DiscoverController extends BaseController {
   void onInit() {
     super.onInit();
     selectedBrand = brands.first;
+    filterParams.rangeValues = AppConstants.defaultRangeValues;
     scrollController = ScrollController();
     _getData();
+  }
+
+  Future<void> retry() async {
+    await _getData();
+  }
+
+  Future<void> onRefresh() async {
+    await _getData(refresh: false, isPullDown: true);
   }
 
   @override
@@ -56,7 +67,10 @@ class DiscoverController extends BaseController {
     super.onReady();
   }
 
-  Future<void> _getData({bool refresh = true}) async {
+  Future<void> _getData({
+    bool refresh = true,
+    bool isPullDown = false,
+  }) async {
     isLoading = refresh;
     isPaginating = true;
     error = null;
@@ -70,16 +84,16 @@ class DiscoverController extends BaseController {
       if (!refresh) {
         error = left.message;
       } else {
-        // raise the error via snackbar
+        CustomSnackbars.errorSnackbar(message: left.message);
       }
       log("in left: ${left.message}");
     }, (right) {
-      if (right.length >= 20) {
-        filterParams.lastProductId = right.last.id;
-      } else {
-        filterParams.lastProductId = null;
-      }
-      if (refresh) {
+      // if (right.length >= 20) {
+      //   filterParams.lastProductId = right.last.id;
+      // } else {
+      //   filterParams.lastProductId = null;
+      // }
+      if (refresh || isPullDown) {
         products = right;
       } else {
         products = [...products, ...right];
@@ -117,8 +131,11 @@ class DiscoverController extends BaseController {
       if (filterParams.brand != null) {
         setBrand(filterParams.brand!);
       } else {
+        selectedBrand = brands.first;
         _getData();
       }
     }
   }
+
+  bool get hasFiltersApplied => filterParams.hasNonRangeValues;
 }
