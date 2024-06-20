@@ -51,6 +51,7 @@ This project developed in Flutter as an assement project for Prixity Soft.
 /*
 
 - you can also run it from the command and provide appropriate flavour. Command: flutter run --release -t lib/main_prod.dart --flavor prod
+- When the firebase get configured, just add dummy data by uncomment 2 functions in the initial_bindings file. One will add images to firebase storage and other will add dummy documents in that firestore database and you have the data now. 
 - You're good to go now.
 
 ## Assumptions I made during development:
