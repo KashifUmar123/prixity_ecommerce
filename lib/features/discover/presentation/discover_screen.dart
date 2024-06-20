@@ -78,15 +78,12 @@ class DiscoverScreen extends GetView<DiscoverController> {
     }
     return RefreshIndicator(
       onRefresh: controller.onRefresh,
-      child: ListView.builder(
+      child: ListView(
         controller: controller.scrollController,
         padding: EdgeInsets.zero,
-        itemBuilder: (_, index) {
-          return _placeProducts(context);
-        },
-        // children: [
-        //   _placeProducts(context),
-        // ],
+        children: [
+          _placeProducts(context),
+        ],
       ),
     );
   }
