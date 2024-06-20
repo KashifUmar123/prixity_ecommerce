@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide ContextExtensionss;
 import 'package:prixity_ecommerce_app/core/constants/app_colors.dart';
+import 'package:prixity_ecommerce_app/core/constants/app_locales.dart';
 import 'package:prixity_ecommerce_app/core/extensions/height_and_width_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/padding_extension.dart';
 import 'package:prixity_ecommerce_app/core/extensions/textstyle_extension.dart';
@@ -11,7 +12,6 @@ import 'package:prixity_ecommerce_app/core/widgets/cart_icon.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_appbar.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_review_widget.dart';
 import 'package:prixity_ecommerce_app/core/widgets/custom_scaffold.dart';
-import 'package:prixity_ecommerce_app/features/discover/data/dummy_data.dart';
 import 'package:prixity_ecommerce_app/features/reviews/presentation/reviews_controller.dart';
 
 class ReviewsScreen extends GetView<ReviewsController> {
@@ -30,9 +30,10 @@ class ReviewsScreen extends GetView<ReviewsController> {
               return Column(
                 children: [
                   70.verticalH,
-                  const CustomAppbar(
-                    actions: [CartIcon()],
-                    title: "Review (1045)",
+                  CustomAppbar(
+                    actions: const [CartIcon()],
+                    title:
+                        "${AppLocales.review.tr} ${controller.reviews.length}",
                   ).horizontalPadding(30.w),
                   20.verticalH,
                   _listReviewsTabs(context),
@@ -42,7 +43,7 @@ class ReviewsScreen extends GetView<ReviewsController> {
                       padding:
                           EdgeInsetsDirectional.symmetric(horizontal: 30.w),
                       children: [
-                        ...sampleReviews.map(
+                        ...controller.reviews.map(
                           (e) =>
                               CustomReviewWidget(review: e).bottomPadding(30.h),
                         )
@@ -68,13 +69,13 @@ class ReviewsScreen extends GetView<ReviewsController> {
         padding: EdgeInsets.zero,
         children: [
           30.horizontalW,
-          ...["All", "5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Stars"].map(
+          ...[0, 5, 4, 3, 2, 1].map(
             (e) => GestureDetector(
               onTap: () => controller.setTab(e),
               child: Text(
-                e,
+                e == 0 ? "All" : "$e Stars",
                 style: context.lable20700.copyWith(
-                  color: controller.selectedTab == e
+                  color: controller.selectedStar == e
                       ? AppColors.black
                       : AppColors.gray,
                 ),
