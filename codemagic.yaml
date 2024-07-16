@@ -17,7 +17,7 @@ workflows:
           # Access environment variable with group name
           BASE64_ENCODED_JSON=$GOOGLE_SERVICES_JSON
           # Decode the Base64 string
-          echo "$BASE64_ENCODED_JSON" | base64 --decode > config/android/prod/google-services.json
+          echo "$BASE64_ENCODED_JSON" | base64 --decode > ./config/android/prod/google-services.json
 
           # Optional: Verify decoding success (check for empty file)
           if [[ ! -s "config/android/prod/google-services.json" ]]; then
