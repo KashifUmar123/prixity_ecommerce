@@ -12,7 +12,7 @@ class AppTheme {
     primaryColor: AppColors.red,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorScheme: ColorScheme.light(
-      background: AppColors.white,
+      surface: AppColors.white,
       brightness: Brightness.light,
       error: AppColors.red,
       errorContainer: AppColors.white,
@@ -116,7 +116,7 @@ class AppTheme {
     ),
     checkboxTheme: CheckboxThemeData(
       // fillColor: MaterialStateProperty.all(AppColors.red),
-      checkColor: MaterialStateProperty.all(AppColors.white),
+      checkColor: WidgetStateProperty.all(AppColors.white),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.r),
       ),
