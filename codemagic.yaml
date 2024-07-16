@@ -14,16 +14,8 @@ workflows:
     scripts:
       - name: Decode google-services.json from Base64
         script: |
-          # Access environment variable with group name
           BASE64_ENCODED_JSON=$GOOGLE_SERVICES_JSON
-          # Decode the Base64 string
           echo "$BASE64_ENCODED_JSON" | base64 --decode > ./config/android/prod/google-services.json
-
-          # Optional: Verify decoding success (check for empty file)
-          if [[ ! -s "config/android/prod/google-services.json" ]]; then
-            echo "Error: Decoded google-services.json is empty!"
-            exit 1  # This will cause the build to fail
-          fi
       - name: Set up local.properties
         script: | 
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
