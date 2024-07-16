@@ -12,9 +12,12 @@ workflows:
         GOOGLE_PLAY_TRACK: alpha
       flutter: stable
     scripts:
+      - name: Create directory structure
+        script: |
+          mkdir -p config/android/prod
       - name: Decode google-services.json from Base64
         script: |
-          echo $GOOGLE_SERVICES_JSON | base64 --decode > ./config/android/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 --decode > config/android/prod/google-services.json
       - name: Set up local.properties
         script: | 
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
