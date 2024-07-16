@@ -15,7 +15,7 @@ workflows:
       - name: Decode google-services.json from Base64
         script: |
           # Access environment variable with group name
-          BASE64_ENCODED_JSON=${!google_play_GOOGLE_SERVICES_JSON}
+          BASE64_ENCODED_JSON=$GOOGLE_SERVICES_JSON
           # Decode the Base64 string
           echo "$BASE64_ENCODED_JSON" | base64 --decode > config/android/prod/google-services.json
 
