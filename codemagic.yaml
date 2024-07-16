@@ -29,6 +29,7 @@ workflows:
         script: | 
           # BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
           flutter build apk -t lib/main_prod.dart --flavor prod \
+            --keystore-path=./prixity-keystore.jks \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
     artifacts:
