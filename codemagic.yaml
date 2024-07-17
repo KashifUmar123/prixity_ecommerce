@@ -52,8 +52,6 @@ workflows:
             # --build-number=$BUILD_NUMBER
     artifacts:
       - build/**/outputs/**/*.aab
-      - build/**/outputs/**/mapping.txt
-      - flutter_drive.log
     publishing:
       email:
         recipients:
@@ -64,4 +62,4 @@ workflows:
       google_play:
         credentials: $GOOGLE_CLOUD_SERVICE_ACCOUNT
         track: internal
-        submit_as_draft: true
+        # submit_as_draft: true
