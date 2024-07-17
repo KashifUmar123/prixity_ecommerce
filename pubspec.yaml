@@ -1,6 +1,6 @@
 name: prixity_ecommerce_app
 description: "Assesment project for Prixity Soft."
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
