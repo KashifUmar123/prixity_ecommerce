@@ -7,7 +7,6 @@ workflows:
         - google_play
       vars:
         PACKAGE_NAME: "com.prixity.ecommerce.app"
-        GOOGLE_PLAY_TRACK: alpha
       flutter: stable
     scripts:
       - name: Setup the keystore
@@ -46,20 +45,20 @@ workflows:
       - name: Build AAB with Flutter
         script: | 
           # BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
-          flutter build apk -t lib/main_prod.dart --flavor prod \
+          flutter build appbundle -t lib/main_prod.dart --flavor prod \
             # --keystore-path=./prixity-keystore.jks \
             # --build-name=1.0.$BUILD_NUMBER \
             # --build-number=$BUILD_NUMBER
     artifacts:
       - build/**/outputs/**/*.aab
     publishing:
-      # email:
-      #   recipients:
-      #     - kashifumar349@gmail.com
-      #   notify:
-      #     success: true
-      #     failure: true
+      email:
+        recipients:
+          - kashifumar349@gmail.com
+        notify:
+          success: true
+          failure: true
       google_play:
         credentials: $GOOGLE_CLOUD_SERVICE_ACCOUNT
         track: internal
-        # submit_as_draft: true
+        submit_as_draft: true
