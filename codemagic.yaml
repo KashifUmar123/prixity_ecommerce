@@ -65,4 +65,4 @@ workflows:
       google_play:
         credentials: $GOOGLE_CLOUD_SERVICE_ACCOUNT
         track: internal
-        # submit_as_draft: true
+        submit_as_draft: true
