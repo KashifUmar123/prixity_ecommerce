@@ -53,12 +53,12 @@ workflows:
     artifacts:
       - build/**/outputs/**/*.aab
     publishing:
-      email:
-        recipients:
-          - kashifumar349@gmail.com
-        notify:
-          success: true
-          failure: true
+      # email:
+      #   recipients:
+      #     - kashifumar349@gmail.com
+      #   notify:
+      #     success: true
+      #     failure: true
       google_play:
         credentials: $GOOGLE_CLOUD_SERVICE_ACCOUNT
         track: internal
