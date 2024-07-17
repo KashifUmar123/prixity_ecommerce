@@ -3,8 +3,6 @@ workflows:
     name: Android Workflow
     max_build_duration: 120
     environment:
-      # android_signing:
-      #   - ../prixity-keystore.jks
       groups:
         - google_play
       vars:
@@ -56,15 +54,14 @@ workflows:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
-    # publishing:
-    #   email:
-    #     recipients:
-    #       - user_1@example.com
-    #       - user_2@example.com
-    #     notify:
-    #       success: true
-    #       failure: false
-    #   google_play:
-    #     credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-    #     track: $GOOGLE_PLAY_TRACK
-    #     submit_as_draft: true
+    publishing:
+      email:
+        recipients:
+          - kashifumar349@gmail.com
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GOOGLE_CLOUD_SERVICE_ACCOUNT
+        track: internal
+        submit_as_draft: true
